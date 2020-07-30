@@ -17,9 +17,9 @@ pytestmark = pytest.mark.django_db
 
 
 def test_good_cheese_list_view_expanded(rf):
-    """For reference only, is redundant with funciton test_good_cheese_list_view()"""
+    '''For reference only, this is redundant with funciton test_good_cheese_list_view()'''
     # Determine the URL
-    url = reverse("cheeses:list")
+    url = reverse('cheeses:list')
     # rf is pytest shortcut to django.test.RequestFactory
     # We generate a request as if from a user accessing
     # the cheese list view
@@ -36,7 +36,7 @@ def test_good_cheese_list_view_expanded(rf):
 
 def test_good_cheese_list_view(rf):
     # Get the request
-    request = rf.get(reverse("cheeses:list"))
+    request = rf.get(reverse('cheeses:list'))
     # Use the request to get the response
     response = CheeseListView.as_view()(request)
     # Test that the response is valid
@@ -45,7 +45,7 @@ def test_good_cheese_list_view(rf):
 
 def test_good_cheese_detail_view(rf, cheese):
     # Make a request for our new cheese
-    url = reverse("cheeses:detail", kwargs={'slug': cheese.slug})
+    url = reverse('cheeses:detail', kwargs={'slug': cheese.slug})
     request = rf.get(url)
     # Use the request to get the response
     callable_obj = CheeseDetailView.as_view()
@@ -56,7 +56,7 @@ def test_good_cheese_detail_view(rf, cheese):
 
 def test_good_cheese_create_view(rf, admin_user):
     # Make a request for our new cheese
-    request = rf.get(reverse("cheeses:add"))
+    request = rf.get(reverse('cheeses:add'))
     # Add an authenticated user
     request.user = admin_user
     # Use the request to get the response
@@ -92,17 +92,17 @@ def test_detail_contains_cheese_data(rf, cheese):
 
 def test_cheese_create_form_valid(rf, admin_user):
     form_data = {
-        "name": "Paski Sir",
-        "description": "A salty hard cheese",
-        "firmness": Cheese.Firmness.HARD
+        'name': 'Paski Sir',
+        'description': 'A salty hard cheese',
+        'firmness': Cheese.Firmness.HARD
     }
     request = rf.post(reverse('cheeses:add'), form_data)
     request.user = admin_user
     response = CheeseCreateView.as_view()(request)
 
-    cheese = Cheese.objects.get(name="Paski Sir")
+    cheese = Cheese.objects.get(name='Paski Sir')
 
-    assert cheese.description == "A salty hard cheese"
+    assert cheese.description == 'A salty hard cheese'
     assert cheese.firmness == Cheese.Firmness.HARD
     assert cheese.creator == admin_user
 
@@ -123,7 +123,7 @@ def test_good_cheese_update_view(rf, admin_user, cheese):
 
 
 def test_cheese_update(rf, admin_user, cheese):
-    form_data = {'name': "new name", 'description': "new description", 'firmness': Cheese.Firmness.HARD}
+    form_data = {'name': 'new name', 'description': 'new description', 'firmness': Cheese.Firmness.HARD}
     url = reverse('cheeses:update', kwargs={'slug': cheese.slug})
     request = rf.post(url, form_data)
     request.user = admin_user
