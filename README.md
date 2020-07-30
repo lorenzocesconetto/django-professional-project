@@ -1,6 +1,5 @@
-EveryCheese
-==============================
+# A Professional Django Project - EveryCheese
 
-The Ultimate Cheese Index!
-
-For more information, see TODO.
+This is a playground project that shows the power of django.
+It also demonstrates a nice way to organize your code, write tests,
+perform authentication, etc.
