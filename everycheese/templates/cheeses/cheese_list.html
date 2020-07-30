@@ -3,19 +3,18 @@
 {% block title %}Cheese List{% endblock title %}
 
 {% block content %}
-<h2>Cheese List</h2>
-<ul>
-  {% for cheese in cheese_list %}
-  <li><a href="{% url 'cheeses:detail' cheese.slug %}">{{ cheese.name }}</a></li>
-  {% endfor %}
-</ul>
+  <h2>Cheese List</h2>
+  <ul>
+    {% for cheese in cheese_list %}
+    <li><a href="{% url 'cheeses:detail' cheese.slug %}">{{ cheese.name }}</a></li>
+    {% endfor %}
+  </ul>
 
-<hr/>
-<p>Don't see a cheese listed here?</p>
-<p>
-  <a href="{% url 'cheeses:add' %}" class="btn btn-primary" role="button">
-    Add Cheese
-  </a>
-</p>
-
+  <hr/>
+  <p>Don't see a cheese listed here?</p>
+  <p>
+    <a href="{% url 'cheeses:add' %}" class="btn btn-primary" role="button">
+      Add Cheese
+    </a>
+  </p>
 {% endblock content %}
